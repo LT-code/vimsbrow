@@ -41,7 +41,7 @@ void CEF_CALLBACK on_before_command_line_processing(
     cef_string_t load_ext10 = {};
     cef_string_utf8_to_utf16(str8, strlen(str8), &load_ext10);
 
-    char str9[] = "/home/retzs64/.cache/cef_user_data/cache/WidevineCdm/";
+    char str9[] = "~/.cache/cef_user_data/cache/WidevineCdm/";
     cef_string_t load_ext_path10 = {};
     cef_string_utf8_to_utf16(str9, strlen(str9), &load_ext_path10);
 
@@ -70,15 +70,15 @@ void CEF_CALLBACK on_before_command_line_processing(
     //--disable-extensions-except
     //--disable-hang-monitor
 
-    char str3[] = "load-extension";
-    cef_string_t load_ext = {};
-    cef_string_utf8_to_utf16(str3, strlen(str3), &load_ext);
+    //char str3[] = "load-extension";
+    //cef_string_t load_ext = {};
+    //cef_string_utf8_to_utf16(str3, strlen(str3), &load_ext);
 
-    char str4[] = "/home/retzs64/Programming/Perso/lt-brow/test/extensions/uBlock0.chromium/";
-    cef_string_t load_ext_path = {};
-    cef_string_utf8_to_utf16(str4, strlen(str4), &load_ext_path);
-
-    command_line->append_switch_with_value(command_line, &load_ext, &load_ext_path);
+    //char str4[] = "~/Programming/Perso/lt-brow/test/extensions/uBlock0.chromium/";
+    //cef_string_t load_ext_path = {};
+    //cef_string_utf8_to_utf16(str4, strlen(str4), &load_ext_path);
+    //command_line->append_switch_with_value(command_line, &load_ext, &load_ext_path);
+    //
     printf("cmd : %s\n", (char*)command_line->get_command_line_string(command_line)->str);
 }
 

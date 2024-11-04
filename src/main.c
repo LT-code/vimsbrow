@@ -83,17 +83,17 @@ int main(int argc, char **argv) {
   //settings.disable_signal_handlers
   //settings.windowless_rendering_enabled = 1;
 
-  char root_cache_path[] = "/home/retzs64/.cache/cef_user_data/cache/";
+  char root_cache_path[] = "~/.cache/cef_user_data/cache/";
   cef_string_t cef_root_cache_path = {};
   cef_string_utf8_to_utf16(root_cache_path, strlen(root_cache_path), &cef_root_cache_path);
   settings.root_cache_path = cef_root_cache_path;
 
-  char cache_path[] = "/home/retzs64/.cache/cef_user_data/cache/cache_path/";
+  char cache_path[] = "~/.cache/cef_user_data/cache/cache_path/";
   cef_string_t cef_cache_path = {};
   cef_string_utf8_to_utf16(cache_path, strlen(cache_path), &cef_cache_path);
   settings.cache_path = cef_cache_path;
 
-  char log_file[] = "/home/retzs64/.cache/cef_user_data/test.log";
+  char log_file[] = "~/.cache/cef_user_data/test.log";
   cef_string_t cef_log_file = {};
   cef_string_utf8_to_utf16(log_file, strlen(log_file), &cef_log_file);
   settings.log_file = cef_log_file;

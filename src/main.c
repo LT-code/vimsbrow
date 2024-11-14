@@ -100,7 +100,6 @@ int main(int argc, char **argv) {
   //settings.chrome_runtime = true;
 
   // Initialize CEF.
-  printf("cef_initialize\n");
   cef_initialize(&main_args, &settings, &app, NULL);
 
   // Create GTK window. Alternatively you can pass a NULL handle
@@ -122,9 +121,11 @@ int main(int argc, char **argv) {
   XSetIOErrorHandler(x11_io_error_handler);
 
   // Initial url
-  //char url[] = "https://bitmovin.com/demos/drm";
+  char url[] = "https://bitmovin.com/demos/drm";
   //char url[] = "https://jsbenchmark.com/";
-  char url[] = "https://duckduckgo.com";
+  //char url[] = "https://duckduckgo.com";
+  //char url[] = "https://shaka-player-demo.appspot.com/demo/";
+  //char url[] = "http://support.shaka-player-demo.appspot.com/";
   //char url[] = "https://europixhd.site/tv/tt0212671-s7#vidbox";
   cef_string_t cef_url = {};
   cef_string_utf8_to_utf16(url, strlen(url), &cef_url);
@@ -134,7 +135,6 @@ int main(int argc, char **argv) {
   cef_browser_settings_t browser_settings = {};
   browser_settings.size = sizeof(cef_browser_settings_t);
   //browser_settings.javascript_dom_paste 
-  printf("===================================");
 
   // Client handler and its callbacks
   cef_client_t client = {};

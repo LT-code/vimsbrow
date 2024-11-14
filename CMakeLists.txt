@@ -5,8 +5,8 @@ set(PROJECT_NAME "lt-brow")
 #set(CEF_VERSION "cef_binary_127.3.5+g114ea2a+chromium-127.0.6533.120_linux64_minimal")
 #set(CEF_VERSION "cef_binary_129.0.12+gf09539f+chromium-129.0.6668.101_linux64_minimal")
 #set(CEF_VERSION "cef_binary_130.1.3%2Bg06c1602%2Bchromium-130.0.6723.59_linux64_minimal")
-set(CEF_VERSION "cef_binary_130.1.7%2Bg59f3b14%2Bchromium-130.0.6723.59_linux64_minimal")
-#set(CEF_VERSION "cef_binary_130.1.9%2Bgfc42567%2Bchromium-130.0.6723.70_windows64_minimal")
+#set(CEF_VERSION "cef_binary_130.1.7%2Bg59f3b14%2Bchromium-130.0.6723.59_linux64_minimal")
+set(CEF_VERSION "cef_binary_130.1.14%2Bgde32089%2Bchromium-130.0.6723.92_linux64_minimal")
 set(CEF_DOWNLOAD_URL "https://cef-builds.spotifycdn.com/${CEF_VERSION}.tar.bz2")
 set(BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/build/")
 
@@ -27,13 +27,16 @@ file(GLOB_RECURSE sources
         "${CMAKE_SOURCE_DIR}/src/*.cpp"
         )
 
-
 ##############################
 # DOWNLOAD CEF
 ##############################
 string(REGEX REPLACE "%2B" "+" output "${BUILD_DIR}/${CEF_VERSION}/")
 cmake_path(GET output PARENT_PATH base_name)
 file(RELATIVE_PATH CEF_DIR "${BUILD_DIR}" "${base_name}")
+
+
+set(CEF_DIR "/home/retzs64/release/")
+
 
 if(NOT EXISTS "${output}/")
   Set(FETCHCONTENT_QUIET FALSE)

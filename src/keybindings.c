@@ -14,6 +14,7 @@ int keybindings_on_pre_key_event(struct _cef_keyboard_handler_t* self,
   key_up.character = '\0';
   key_up.modifiers = 0;
 
+
   if(!event->focus_on_editable_field) {
     cef_browser_host_t* host = browser->get_host(browser);
     switch (event->character) {
@@ -54,8 +55,6 @@ int keybindings_on_pre_key_event(struct _cef_keyboard_handler_t* self,
       case ':':
         //gtk_widget_grab_focus(GTK_WIDGET(browser->get_host(browser)->get_window_handle(host)));
         entry_get_focus();
-
-        printf("unfocus\n");
         return 1;
     }
   }

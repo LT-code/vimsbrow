@@ -15,7 +15,6 @@ static struct _mytest status_var;
 //static struct _mytest status_var;
 
 void app_terminate_signal(int signatl) {
-  printf("app_terminate_signal\n");
   cef_quit_message_loop();
 }
 
@@ -95,10 +94,11 @@ void entry_set_focus() {
 }
 
 void entry_get_focus() {
+    cef_browser_host_t* host = g_browser->get_host(g_browser);
+    XSetInputFocus(status_var.display, host->get_window_handle(host), 0, 0);
     XSetInputFocus(status_var.display, status_var.xid, 1, 0);
-          cef_browser_host_t* host = g_browser->get_host(g_browser);
-          host->set_focus(host, 0);
-  printf("ennnnnnnnnnnttttttttttttrrrrrrrrrrrryyyyyyyyyyyyyyyyyyy %i\n", status_var.status);
+    host->set_focus(host, 0);
+    printf("ennnnnnnnnnnttttttttttttrrrrrrrrrrrryyyyyyyyyyyyyyyyyyy %i\n", status_var.status);
     gtk_widget_get_can_focus(status_var.entry);
     gtk_widget_grab_focus(status_var.entry);
     gtk_entry_set_text(GTK_ENTRY(status_var.entry), ":");
@@ -156,7 +156,7 @@ gboolean on_focus_out(GtkWidget *widget, GdkEventFocus *event, gpointer data) {
 }
 
 void on_mouse_enter(GtkWidget *widget, GdkEventFocus *event, GtkEntry *entry) {
-  printf("7777777777777777777777777777777777777777777777777777 %i\n", event->type);
+  printf("7777777777777777777777777777777777777777777777777777 %i %i %i\n", event->in, event->send_event, event->type);
     //entry_get_focus(); // Set focus back to entry
 }
 
@@ -217,7 +217,6 @@ Window create_gtk_window(char *title, int width, int height) {
   status_var.display = display;
   status_var.global = cef_view_vbox;
   status_var.status = 0;
-  printf("ffffffffffffffffffffff %i\n", status_var.status);
   g_signal_connect(window, "focus-in-event", G_CALLBACK(on_focus_in), NULL);
   g_signal_connect(window, "focus-out-event", G_CALLBACK(on_focus_out), NULL);
   g_signal_connect(G_OBJECT (entry), "key_press_event", G_CALLBACK(on_key_press), NULL);
@@ -234,6 +233,6 @@ Window create_gtk_window(char *title, int width, int height) {
   // gtk_widget_hide(status_bar);
 
   Window xid = gdk_x11_window_get_xid(gtk_widget_get_window(cef_view_vbox));
-  status_var.xid = xid;
+  status_var.xid = gdk_x11_window_get_xid(gtk_widget_get_window(entry));
   return xid;
 }
